@@ -1,57 +1,82 @@
-<h1><?php echo lang('create_user_heading');?></h1>
-<p><?php echo lang('create_user_subheading');?></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Criar novo usuário</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</head>
+</head>
+<body>
 
-<div id="infoMessage"><?php echo $message;?></div>
+  <div class="card">
+    <div class="card-header">
+      <h1 class="mt-2">Criação de usuário</h1>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <p>Por favor preencha todos os campos abaixo.</p>
 
-<?php echo form_open("auth/create_user");?>
+    <div id="infoMessage"><?php echo $message;?></div>
 
+    <?php echo form_open("auth/create_user");?>
+
+    <div class="form-group">
       <p>
-            <?php echo lang('create_user_fname_label', 'first_name');?> <br />
-            <?php echo form_input($first_name);?>
+        <label for="nome">Nome:</label>
+        <?php echo form_input($first_name, FALSE, 'class="form-control"');?>
       </p>
 
       <p>
-            <?php echo lang('create_user_lname_label', 'last_name');?> <br />
-            <?php echo form_input($last_name);?>
+        <label for="sobrenome">Sobrenome:</label>
+        <?php echo form_input($last_name, FALSE, 'class="form-control"');?>
       </p>
-      
-      <?php
-      if($identity_column!=='email') {
-          echo '<p>';
-          echo lang('create_user_identity_label', 'identity');
-          echo '<br />';
-          echo form_error('identity');
-          echo form_input($identity);
-          echo '</p>';
-      }
-      ?>
+    </div>
 
-      <p>
-            <?php echo lang('create_user_company_label', 'company');?> <br />
-            <?php echo form_input($company);?>
-      </p>
+    <?php
+    if($identity_column!=='email') {
+      echo '<p>';
+      echo lang('create_user_identity_label', 'identity');
+      echo '<br />';
+      echo form_error('identity');
+      echo form_input($identity);
+      echo '</p>';
+    }
+    ?>
 
-      <p>
-            <?php echo lang('create_user_email_label', 'email');?> <br />
-            <?php echo form_input($email);?>
-      </p>
+    <p>
+     <label for="empresa">Empresa:</label>
+     <?php echo form_input($company, FALSE, 'class="form-control"');?>
+   </p>
 
-      <p>
-            <?php echo lang('create_user_phone_label', 'phone');?> <br />
-            <?php echo form_input($phone);?>
-      </p>
+   <p>
+    <label for="email">Email:</label>
+    <?php echo form_input($email, FALSE, 'class="form-control"');?>
+  </p>
 
-      <p>
-            <?php echo lang('create_user_password_label', 'password');?> <br />
-            <?php echo form_input($password);?>
-      </p>
+  <p>
+    <label for="telefone">Telefone:</label>
+    <?php echo form_input($phone, FALSE, 'class="form-control"');?>
+  </p>
 
-      <p>
-            <?php echo lang('create_user_password_confirm_label', 'password_confirm');?> <br />
-            <?php echo form_input($password_confirm);?>
-      </p>
+  <p>
+    <label for="password">Password:</label>
+    <?php echo form_input($password, FALSE, 'class="form-control"');?>
+  </p>
+
+  <p>
+    <label for="confirmPassword">Confirmar senha:</label>
+    <?php echo form_input($password_confirm, FALSE, 'class="form-control"');?>
+  </p>
+
+  <p><?php echo form_submit('submit', 'Criar usuário', 'class="btn btn-success"');?></p>
+
+  <?php echo form_close();?>
+</div>
 
 
-      <p><?php echo form_submit('submit', lang('create_user_submit_btn'));?></p>
-
-<?php echo form_close();?>
+</body>
+</html>
